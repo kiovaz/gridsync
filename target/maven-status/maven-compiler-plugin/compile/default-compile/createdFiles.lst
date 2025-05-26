@@ -1,0 +1,17 @@
+br\com\kio\gridsync\model\ChargingStation.class
+br\com\kio\gridsync\model\UltraFastStation.class
+br\com\kio\gridsync\model\StandartStation.class
+br\com\kio\gridsync\enums\ConnectorType.class
+br\com\kio\gridsync\model\EnergyReport.class
+br\com\kio\gridsync\App.class
+br\com\kio\gridsync\model\Device.class
+br\com\kio\gridsync\model\Billing.class
+br\com\kio\gridsync\model\FastStation.class
+br\com\kio\gridsync\GridSyncSystem.class
+br\com\kio\gridsync\services\BillingService.class
+br\com\kio\gridsync\enums\DeviceType.class
+br\com\kio\gridsync\services\ChargingService.class
+br\com\kio\gridsync\enums\Priority.class
+br\com\kio\gridsync\utils\TimeUtils.class
+br\com\kio\gridsync\services\ReportService.class
+br\com\kio\gridsync\enums\ChargingSpeed.class
