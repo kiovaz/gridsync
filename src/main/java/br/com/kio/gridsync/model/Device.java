@@ -8,8 +8,8 @@ import br.com.kio.gridsync.enums.Priority;
 public class Device {
     private String code;
     private DeviceType type;
-    private double power; // in watts
-    private double currentBatteryLevel; // percentage 0-100
+    private double power; // watts
+    private double currentBatteryLevel; // bateria de 0-100
     private Priority priority;
     private LocalDateTime connectionTime;
 
@@ -19,16 +19,33 @@ public class Device {
         this.power = power;
         this.currentBatteryLevel = currentBatteryLevel;
         this.priority = priority;
-        this.connectionTime = LocalDateTime.now();
+        this.connectionTime = LocalDateTime.now(); // captura a hora exata em que foi criado e alocado para a estação
     }
 
-    // Getters and Setters
-    public String getCode() { return code; }
-    public DeviceType getType() { return type; }
-    public double getPower() { return power; }
-    public double getCurrentBatteryLevel() { return currentBatteryLevel; }
-    public Priority getPriority() { return priority; }
-    public LocalDateTime getConnectionTime() { return connectionTime; }
+    // Getters e Setters
+    public String getCode() {
+        return code;
+    }
+
+    public DeviceType getType() {
+        return type;
+    }
+
+    public double getPower() {
+        return power;
+    }
+
+    public double getCurrentBatteryLevel() {
+        return currentBatteryLevel;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public LocalDateTime getConnectionTime() {
+        return connectionTime;
+    }
 
     public void setCurrentBatteryLevel(double level) {
         if (level >= 0 && level <= 100) {
