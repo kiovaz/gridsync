@@ -20,12 +20,8 @@ GridSync is a Java-based system for managing electric device charging stations w
 ## How to Run
 
 1. Clone the repository
-2. Build the project:
-mvn clean package
-
-3. Run the application:
-
-java -cp target/gridsync-1.0.0.jar br.com.kio.gridsync.App
+2. Build the project: mvn clean package
+3. Run the application: java -cp target/gridsync-1.0.0.jar br.com.kio.gridsync.App
 
 ## Running Tests
 

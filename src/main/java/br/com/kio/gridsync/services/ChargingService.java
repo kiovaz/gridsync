@@ -24,7 +24,7 @@ public class ChargingService {
     }
 
     private void initializeStations() {
-        // Create some default stations
+        // estacoes iniciais basicas
         stations.add(new StandartStation("STD-001", 10.0));
         stations.add(new StandartStation("STD-002", 10.0));
         stations.add(new FastStation("FST-001", 20.0));
@@ -38,15 +38,15 @@ public class ChargingService {
             return false;
         }
 
-        // Find the best station for this device
+        // encotra a melhor estação pro dispositivo
         ChargingStation bestStation = findBestStation(device);
-        
+
         if (bestStation != null && bestStation.connectDevice(device)) {
             connectedDevices.add(device);
             System.out.println("Device " + device.getCode() + " connected to station " + bestStation.getId());
             return true;
         }
-        
+
         System.out.println("No available station found for device " + device.getCode());
         return false;
     }
@@ -55,13 +55,11 @@ public class ChargingService {
         return stations.stream()
                 .filter(station -> station.canConnectDevice(device))
                 .filter(station -> station.getAvailableCapacity() >= (device.getPower() / 1000))
-                .sorted(Comparator.comparing((ChargingStation station) -> 
-                        device.getPriority() == Priority.HIGH ? 
-                                station.calculateChargingTime(device) : 
-                                -station.getAvailableCapacity())
-                )
+                .sorted(Comparator.comparing((ChargingStation station) -> device.getPriority() == Priority.HIGH
+                        ? station.calculateChargingTime(device)
+                        : -station.getAvailableCapacity()))
                 .findFirst()
-                .orElse(null);
+                .orElse(null); // filtragem com stream no arraylist pra encontrar melhor estacao
     }
 
     public Billing disconnectDevice(String deviceCode) {
@@ -85,22 +83,21 @@ public class ChargingService {
             return null;
         }
 
-        // Calculate energy consumed
+        // Calcula energia consumida
         double hoursConnected = java.time.Duration.between(
                 device.getConnectionTime(), java.time.LocalDateTime.now()).toMinutes() / 60.0;
         double energyConsumed = (device.getPower() / 1000) * hoursConnected;
-        
-        // Create billing
+
+        // Cria a billing (nao a jeans)
         Billing billing = new Billing(
                 device.getCode(),
                 station.getId(),
                 station.getSpeed(),
                 device.getConnectionTime(),
                 energyConsumed,
-                station.calculateEnergyCost(energyConsumed)
-        );
+                station.calculateEnergyCost(energyConsumed));
 
-        // Disconnect device
+        // Desconecta dispositivo
         station.disconnectDevice(device);
         connectedDevices.remove(device);
 
@@ -108,6 +105,11 @@ public class ChargingService {
     }
 
     // Getters
-    public List<Device> getConnectedDevices() { return connectedDevices; }
-    public List<ChargingStation> getStations() { return stations; }
+    public List<Device> getConnectedDevices() {
+        return connectedDevices;
+    }
+
+    public List<ChargingStation> getStations() {
+        return stations;
+    }
 }

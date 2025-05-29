@@ -13,7 +13,7 @@ public class UltraFastStation extends ChargingStation {
 
     @Override
     public boolean canConnectDevice(Device device) {
-        return device.getType() == DeviceType.ELECTRIC_VEHICLE;
+        return device.getType() == DeviceType.ELECTRIC_VEHICLE;         // estação para recarregar EXCLUSIVAMENTE veiculoseletricos
     }
 
     @Override
@@ -24,6 +24,6 @@ public class UltraFastStation extends ChargingStation {
 
     @Override
     public double calculateEnergyCost(double energy) {
-        return energy * 1.0; // $1.0 per kWh
+        return energy * 1.0; // $1.0 por kWh
     }
 }

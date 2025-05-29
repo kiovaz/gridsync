@@ -12,17 +12,17 @@ public class FastStation extends ChargingStation {
 
     @Override
     public boolean canConnectDevice(Device device) {
-        return true; // Can connect all devices
+        return true; // pode conectar todos os dispositivos
     }
 
     @Override
     public double calculateChargingTime(Device device) {
         double missingBattery = 100 - device.getCurrentBatteryLevel();
-        return (missingBattery * 0.01 * (device.getPower() / 1000)) / (maxCapacity * 0.6); // 60% of max capacity
+        return (missingBattery * 0.01 * (device.getPower() / 1000)) / (maxCapacity * 0.6); // usa 60% da capacidade da estação para recarregar 
     }
 
     @Override
     public double calculateEnergyCost(double energy) {
-        return energy * 0.7; // $0.7 per kWh
+        return energy * 0.7; // 0.7 por kWh
     }
 }

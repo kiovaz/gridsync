@@ -25,7 +25,7 @@ public class BillingService {
 
     public double calculateTotalRevenue() {
         return billingRecords.stream()
-                .mapToDouble(Billing::getTotalCost)
+                .mapToDouble(Billing::getTotalCost)         // stream pra pegar informacoes
                 .sum();
     }
 

@@ -8,10 +8,10 @@ import br.com.kio.gridsync.enums.ConnectorType;
 
 public abstract class ChargingStation {
     protected String id;
-    protected double maxCapacity; // in kWh
+    protected double maxCapacity; // kWh
     protected List<ConnectorType> connectorTypes;
     protected ChargingSpeed speed;
-    protected double currentLoad; // current energy being used
+    protected double currentLoad; // energia sendo usada para carregar dispositivo
     protected List<Device> connectedDevices;
 
     public ChargingStation(String id, double maxCapacity, ChargingSpeed speed) {
@@ -24,13 +24,15 @@ public abstract class ChargingStation {
     }
 
     public abstract boolean canConnectDevice(Device device);
+
     public abstract double calculateChargingTime(Device device);
+
     public abstract double calculateEnergyCost(double energy);
 
     public boolean connectDevice(Device device) {
         if (canConnectDevice(device) && (currentLoad + device.getPower() / 1000) <= maxCapacity) {
-            connectedDevices.add(device);
-            currentLoad += device.getPower() / 1000; // convert watts to kW
+            connectedDevices.add(device);           // adiciona o dispositivo ao arraylist da estação
+            currentLoad += device.getPower() / 1000; // converte watts pra kw
             return true;
         }
         return false;
@@ -43,12 +45,29 @@ public abstract class ChargingStation {
     }
 
     // Getters
-    public String getId() { return id; }
-    public double getMaxCapacity() { return maxCapacity; }
-    public List<ConnectorType> getConnectorTypes() { return connectorTypes; }
-    public ChargingSpeed getSpeed() { return speed; }
-    public double getCurrentLoad() { return currentLoad; }
-    public List<Device> getConnectedDevices() { return connectedDevices; }
+    public String getId() {
+        return id;
+    }
+
+    public double getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public List<ConnectorType> getConnectorTypes() {
+        return connectorTypes;
+    }
+
+    public ChargingSpeed getSpeed() {
+        return speed;
+    }
+
+    public double getCurrentLoad() {
+        return currentLoad;
+    }
+
+    public List<Device> getConnectedDevices() {
+        return connectedDevices;
+    }
 
     public double getAvailableCapacity() {
         return maxCapacity - currentLoad;

@@ -1,1 +1,27 @@
-/.idea
+# Build e compilação
+/target/
+/bin/
+/build/
+*.class
+*.jar
+*.war
+
+# IDE (IntelliJ, Eclipse, VSCode)
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Sistemas operacionais
+.DS_Store (Mac)
+Thumbs.db (Windows)
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+
+# Configurações locais
+.env
+*.properties

@@ -31,7 +31,7 @@ public class GridSyncSystem {
         while (running) {
             printMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); // buffer
 
             switch (choice) {
                 case 1:
@@ -101,7 +101,7 @@ public class GridSyncSystem {
         System.out.println("3. High");
         System.out.print("Choose priority: ");
         Priority priority = Priority.values()[scanner.nextInt() - 1];
-        scanner.nextLine(); // consume newline
+        scanner.nextLine(); // buffer
         
         Device device = new Device(code, type, power, batteryLevel, priority);
         if (chargingService.connectDevice(device)) {
@@ -151,7 +151,7 @@ public class GridSyncSystem {
         System.out.println("2. Monthly report");
         System.out.print("Choose option: ");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine(); // consome buffer
         
         if (choice == 1) {
             EnergyReport report = reportService.generateCurrentReport();
@@ -198,7 +198,7 @@ public class GridSyncSystem {
         System.out.println("2. View records for a device");
         System.out.print("Choose option: ");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        scanner.nextLine(); // consome buffer
         
         if (choice == 1) {
             List<Billing> records = billingService.getBillingRecords();
